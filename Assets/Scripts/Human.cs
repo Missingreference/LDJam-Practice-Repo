@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : MonoBehaviour
+public class Human : MonoBehaviour
 {
     public float moveSpeed { get; private set; } = 10.0f;
     public int health { get; private set; } = 100;

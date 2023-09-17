@@ -18,6 +18,8 @@ public class MainMenu : MonoBehaviour
 
         startButton = startButtonTransform.GetComponent<Button>();
 
+        //startButton = transform.Find("Start Button").GetComponent<Button>();
+
 
         // find transform reference to rules button
 
@@ -48,14 +50,23 @@ public class MainMenu : MonoBehaviour
         gameTitleText.outlineColor = myColour;
 
 
-       
+        Image myImage;
 
+        myImage = transform.Find("Start Button").GetComponent<Image>();
+        myImage = startButtonTransform.GetComponent<Image>();
+        myImage = startButton.GetComponent<Image>();
 
+        int myNumber = 100;
+        float myFloatNumber = 1.0f;
+
+        gameTitleText.text = myNumber.ToString();
+
+        //gameTitleText.text = Random.Range(-100, 100).ToString();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+
+        //gameTitleText.text = Random.Range(-100, 100).ToString();
     }
 }
