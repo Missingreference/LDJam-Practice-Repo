@@ -9,6 +9,7 @@ public class MainMenu : MonoBehaviour
     Button startButton;
     Button rulesButton;
     TextMeshProUGUI gameTitleText;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -48,8 +49,8 @@ public class MainMenu : MonoBehaviour
         gameTitleText.outlineColor = myColour;
 
 
-       
 
+        Image startButtonImage = startButtonTransform.GetComponent<Image>();
 
     }
 
