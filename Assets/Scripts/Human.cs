@@ -36,6 +36,9 @@ public class Human : MonoBehaviour
         {
             spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
         }
+
+        spriteRenderer.spriteSortPoint = SpriteSortPoint.Pivot;
+
         //Create a Rigidbody2D with settings
         rigidbody = gameObject.AddComponent<Rigidbody2D>();
         rigidbody.freezeRotation = true;
