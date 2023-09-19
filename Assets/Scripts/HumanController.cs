@@ -7,6 +7,11 @@ public class HumanController : MonoBehaviour
 
     public Human human;
 
+    public bool leftIsPressed { get; private set; }
+    public bool rightIsPressed { get; private set; }
+    public bool upIsPressed { get; private set; }
+    public bool downIsPressed { get; private set; }
+
     void Awake()
     {
         human = GetComponent<Human>();
@@ -19,24 +24,33 @@ public class HumanController : MonoBehaviour
 
     void Update()
     {
+        leftIsPressed = Input.GetKey(KeyCode.A);
+        rightIsPressed = Input.GetKey(KeyCode.D);
+        upIsPressed = Input.GetKey(KeyCode.W);
+        downIsPressed = Input.GetKey(KeyCode.S);
+
         Vector2 direction = Vector2.zero;
-        if(Input.GetKey(KeyCode.A)) 
+        if(leftIsPressed) 
         {
-            direction += -Vector2.left;
-        }
-        if(Input.GetKey(KeyCode.D))
-        {
+            //(-1.0f, 0.0f)
             direction += Vector2.left;
         }
-        if(Input.GetKey(KeyCode.W))
+        if(rightIsPressed)
         {
+            //(1.0f, 0.0f)
+            direction += Vector2.right;
+        }
+        if(upIsPressed)
+        {
+            //(0.0f, 1.0f)
             direction += Vector2.up;
         }
-        if(Input.GetKey(KeyCode.S))
+        if(downIsPressed)
         {
-            direction += -Vector2.down;
+            //(0.0f, -1.0f)
+            direction += Vector2.down;
         }
 
-        human.moveDirection = direction;
+        human.Move(direction);
     }
 }
