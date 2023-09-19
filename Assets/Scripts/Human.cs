@@ -7,7 +7,7 @@ public class Human : MonoBehaviour
     public float moveSpeed = 10.0f;
     public int health { get; private set; } = 100;
 
-    public bool isAlive { get; private set; }
+    public bool isAlive { get; private set; } = true;
 
     public Vector2 moveDirection { get; private set; } = Vector2.zero;
 
