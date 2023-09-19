@@ -31,6 +31,7 @@ public class Human : MonoBehaviour
             spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
         }
         rigidbody = gameObject.AddComponent<Rigidbody2D>();
+        rigidbody.freezeRotation = true;
 
         m_FacingDownSprite = Resources.Load<Sprite>("Human_Down");
         m_FacingLeftSprite = Resources.Load<Sprite>("Human_Left");
