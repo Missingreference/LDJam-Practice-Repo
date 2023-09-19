@@ -41,9 +41,11 @@ public class Human : MonoBehaviour
         rigidbody.freezeRotation = true;
         rigidbody.drag = 40.0f;
         rigidbody.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+        rigidbody.gravityScale = 0.0f;
 
         //Create a CircleCollider2D as a collider with settings
         movementCollider = gameObject.AddComponent<CircleCollider2D>();
+        movementCollider.isTrigger = false;
         movementCollider.radius = 0.04f;
         movementCollider.offset = new Vector2(0.0f, 0.04f);
 
@@ -57,8 +59,6 @@ public class Human : MonoBehaviour
         m_FacingDownSprite = Resources.Load<Sprite>("Human_Down");
         m_FacingLeftSprite = Resources.Load<Sprite>("Human_Left");
         m_FacingUpSprite = Resources.Load<Sprite>("Human_Up");
-
-        rigidbody.gravityScale = 0.0f;
     }
 
     /// <summary>
