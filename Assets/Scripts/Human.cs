@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Human : MonoBehaviour
 {
-    public float moveSpeed = 10.0f;
+    public float moveSpeed = 3000.0f;
     public int health { get; private set; } = 100;
 
     public bool isAlive { get; private set; } = true;
@@ -13,7 +13,8 @@ public class Human : MonoBehaviour
 
     public SpriteRenderer spriteRenderer { get; private set; }
     public Rigidbody2D rigidbody { get; private set; }
-    public Collider2D collider { get; private set; }
+    public CircleCollider2D movementCollider { get; private set; }
+    public BoxCollider2D bodyTrigger { get; private set; }
 
     //Sprites
     private Sprite m_FacingDownSprite;
@@ -32,6 +33,17 @@ public class Human : MonoBehaviour
         }
         rigidbody = gameObject.AddComponent<Rigidbody2D>();
         rigidbody.freezeRotation = true;
+        rigidbody.drag = 40.0f;
+        rigidbody.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+
+        movementCollider = gameObject.AddComponent<CircleCollider2D>();
+        movementCollider.radius = 0.04f;
+        movementCollider.offset = new Vector2(0.0f, 0.04f);
+
+        bodyTrigger = gameObject.AddComponent<BoxCollider2D>();
+        bodyTrigger.isTrigger = true;
+        bodyTrigger.size = new Vector2(0.07f, 0.1f);
+        bodyTrigger.offset = new Vector2(0.0f, 0.07f);
 
         m_FacingDownSprite = Resources.Load<Sprite>("Human_Down");
         m_FacingLeftSprite = Resources.Load<Sprite>("Human_Left");
@@ -86,7 +98,7 @@ public class Human : MonoBehaviour
         if(moveDirection == Vector2.zero || !isAlive) return;
 
         //Do movement
-        rigidbody.MovePosition(rigidbody.position + (moveDirection * moveSpeed * Time.fixedDeltaTime));
+        rigidbody.AddForce(moveDirection * moveSpeed * Time.fixedDeltaTime, ForceMode2D.Force);
 
         //Choose the sprite to show
         if(Mathf.Abs(moveDirection.x) > Mathf.Abs(moveDirection.y))
