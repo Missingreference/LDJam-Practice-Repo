@@ -12,16 +12,17 @@ public class HumanController : MonoBehaviour
     public bool upIsPressed { get; private set; }
     public bool downIsPressed { get; private set; }
 
-    void Awake()
+    /// <summary>
+    /// Start() is called by Unity when an instance of this script is created
+    /// </summary>
+    void Start()
     {
         human = GetComponent<Human>();
     }
 
-    void Start()
-    {
-        
-    }
-
+    /// <summary>
+    /// Update() is called by Unity every frame
+    /// </summary>
     void Update()
     {
         leftIsPressed = Input.GetKey(KeyCode.A);

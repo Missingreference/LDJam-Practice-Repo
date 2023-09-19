@@ -4,17 +4,23 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    //The reference to the camera that is being controlled by this CameraController
     public Camera camera { get; private set; }
 
+    //The Target that the camera will follow
     public GameObject target = null;
 
-    // Start is called before the first frame update
+    /// <summary>
+    /// Start() is called by Unity when an instance of this script is created
+    /// </summary>
     void Start()
     {
         camera = GetComponent<Camera>();
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// Start() is called by Unity when an instance of this script is created
+    /// </summary>
     void Update()
     {
         //Check if we have a target to follow.

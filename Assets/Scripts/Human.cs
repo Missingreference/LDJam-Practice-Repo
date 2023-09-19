@@ -20,6 +20,9 @@ public class Human : MonoBehaviour
     private Sprite m_FacingLeftSprite;
     private Sprite m_FacingUpSprite;
 
+    /// <summary>
+    /// Start() is called by Unity when an instance of this script is created
+    /// </summary>
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -36,6 +39,9 @@ public class Human : MonoBehaviour
         rigidbody.gravityScale = 0.0f;
     }
 
+    /// <summary>
+    /// Update() is called by Unity every frame
+    /// </summary>
     void Update()
     {
         
