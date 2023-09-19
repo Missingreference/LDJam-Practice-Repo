@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class Human : MonoBehaviour
 {
+    //The amount of force to be applied to the Rigidbody to move the Human
     public float moveSpeed = 3000.0f;
+    //Health points
     public int health { get; private set; } = 100;
-
+    //A bool to keep track of if the Human is alive or not
     public bool isAlive { get; private set; } = true;
-
+    //The current direction the Human is trying to move
     public Vector2 moveDirection { get; private set; } = Vector2.zero;
-
+    //The Sprite Renderer component that renders a sprite on the screen
     public SpriteRenderer spriteRenderer { get; private set; }
+    //The Rigidbody component that handles forces and frictions applied to this object
     public Rigidbody2D rigidbody { get; private set; }
+    //The collider component shaped as a circle that the Rigidbody2D will use to collide with other colliders
     public CircleCollider2D movementCollider { get; private set; }
     public BoxCollider2D bodyTrigger { get; private set; }
 
@@ -26,25 +30,30 @@ public class Human : MonoBehaviour
     /// </summary>
     void Start()
     {
+        //Get the SpriteRenderer component. If it doesn't exist create a one
         spriteRenderer = GetComponent<SpriteRenderer>();
         if(spriteRenderer == null)
         {
             spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
         }
+        //Create a Rigidbody2D with settings
         rigidbody = gameObject.AddComponent<Rigidbody2D>();
         rigidbody.freezeRotation = true;
         rigidbody.drag = 40.0f;
         rigidbody.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
 
+        //Create a CircleCollider2D as a collider with settings
         movementCollider = gameObject.AddComponent<CircleCollider2D>();
         movementCollider.radius = 0.04f;
         movementCollider.offset = new Vector2(0.0f, 0.04f);
 
+        //Create a BoxCollider2D as a trigger with settings
         bodyTrigger = gameObject.AddComponent<BoxCollider2D>();
         bodyTrigger.isTrigger = true;
         bodyTrigger.size = new Vector2(0.07f, 0.1f);
         bodyTrigger.offset = new Vector2(0.0f, 0.07f);
 
+        //Load all the human Sprites and put them in their own variables to use later
         m_FacingDownSprite = Resources.Load<Sprite>("Human_Down");
         m_FacingLeftSprite = Resources.Load<Sprite>("Human_Left");
         m_FacingUpSprite = Resources.Load<Sprite>("Human_Up");
@@ -60,6 +69,9 @@ public class Human : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Reduce the health of the Human the specified amount. Die() function will be called once the health is reduced to or below 0.
+    /// </summary>
     public void TakeDamage(int amount)
     {
         //If the Human is not Alive then nothing should happen
