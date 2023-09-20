@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class MainMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+   
         // find trasnform reference for start button
         Transform startButtonTransform = transform.Find("Start Button");
 
@@ -35,7 +37,7 @@ public class MainMenu : MonoBehaviour
         gameTitleText = gameTitleTextTransform.GetComponent<TextMeshProUGUI>();
 
 
-
+        
 
 
         // messing with title appearance
@@ -53,15 +55,32 @@ public class MainMenu : MonoBehaviour
         Image myImage;
 
         myImage = transform.Find("Start Button").GetComponent<Image>();
-        myImage = startButtonTransform.GetComponent<Image>();
-        myImage = startButton.GetComponent<Image>();
+        //myImage = startButtonTransform.GetComponent<Image>();
+        //myImage = startButton.GetComponent<Image>();
 
         int myNumber = 100;
         float myFloatNumber = 1.0f;
 
-        gameTitleText.text = myNumber.ToString();
+        //gameTitleText.text = myNumber.ToString();
+
+        myImage.color = myColour;
 
         //gameTitleText.text = Random.Range(-100, 100).ToString();
+
+
+
+
+
+
+
+
+        //OnStartButtonClick();
+        startButton.onClick.AddListener(OnStartButtonClick);
+
+        rulesButton.onClick.AddListener(OnRulesButtonClick);
+
+
+
     }
 
     void Update()
@@ -69,4 +88,37 @@ public class MainMenu : MonoBehaviour
 
         //gameTitleText.text = Random.Range(-100, 100).ToString();
     }
+
+    /// <summary>
+    /// hover over poo and the rest (:<
+    /// </summary>
+    enum MyEnum
+    {
+        poo,
+        pee,
+        throwup,
+        isaac
+    }
+
+    void OnStartButtonClick()
+    {
+
+        //UnityEngine.SceneManagement.SceneManager.LoadScene("game", LoadSceneMode.Additive);
+
+        SceneManager.LoadScene("Game", 0);
+
+    }
+
+    void OnRulesButtonClick()
+    {
+       
+
+        Transform rulesTransform = transform.parent.Find("RulesUI");
+
+        RulesUI rules = rulesTransform.GetComponent<RulesUI>();
+
+        
+
+    }
+
 }
