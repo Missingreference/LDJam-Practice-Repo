@@ -9,12 +9,13 @@ public class MainMenu : MonoBehaviour
 {
     Button startButton;
     Button rulesButton;
+    RulesUI rules;
     TextMeshProUGUI gameTitleText;
 
     // Start is called before the first frame update
     void Start()
     {
-   
+
         // find trasnform reference for start button
         Transform startButtonTransform = transform.Find("Start Button");
 
@@ -37,16 +38,20 @@ public class MainMenu : MonoBehaviour
         gameTitleText = gameTitleTextTransform.GetComponent<TextMeshProUGUI>();
 
 
-        
+        //find transform of rulesUI
+        Transform rulesTransform = transform.parent.Find("Rules UI");
+
+        rules = rulesTransform.GetComponent<RulesUI>();
+
 
 
         // messing with title appearance
-            // wordspacing
+        // wordspacing
 
         gameTitleText.wordSpacing = 10.1f;
 
-            // colour
-        
+        // colour
+
         Color32 myColour = new Color32(100, 100, 2, 255);
 
         gameTitleText.outlineColor = myColour;
@@ -111,14 +116,29 @@ public class MainMenu : MonoBehaviour
 
     void OnRulesButtonClick()
     {
+
+
        
 
-        Transform rulesTransform = transform.parent.Find("RulesUI");
+        gameObject.SetActive(false);
 
-        RulesUI rules = rulesTransform.GetComponent<RulesUI>();
+        rules.gameObject.SetActive(true);
+
+        rules.onClose += OnRulesUIClose;
+
+
 
         
 
+       
+            
     }
 
+    void OnRulesUIClose()
+    {
+
+        gameObject.SetActive(true);
+        Debug.Log("hahaha");
+        rules.onClose -= OnRulesUIClose;
+    }
 }
